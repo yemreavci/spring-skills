@@ -11,24 +11,17 @@
        http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-
-	<context:annotation-config />
-	<context:component-scan
-		base-package="com.javacodegeeks.enterprise.ws,com.javacodegeeks.enterprise.service" />
-
 	<wss:binding url="/jaxws-spring">
 		<wss:service>
-			<ws:service bean="#myserviceWs" />
+			<ws:service bean="#surveyWs" />
 		</wss:service>
 	</wss:binding>
 
 	<!-- Web service bean -->
-	<bean id="myserviceWs" class="com.javacodegeeks.enterprise.ws.MyWebService">
-		<property name="myBObject" ref="MyBObject" />
+	<bean id="surveyWs" class="com.javacodegeeks.enterprise.ws.impl.SurveyWs">
 		<property name="coreSurveyService" ref="CoreSurveyService"></property>
 	</bean>
 
-	<bean id="MyBObject" class="com.javacodegeeks.enterprise.bo.impl.MyBObjectImpl" />
 	<bean id="CoreSurveyService"
 		class="com.javacodegeeks.enterprise.service.impl.CoreSurveyServiceImpl">
 		<property name="externalSurvey" ref="ExternalSurvey"></property>

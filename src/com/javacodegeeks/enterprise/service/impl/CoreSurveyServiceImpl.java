@@ -1,17 +1,15 @@
-package com.javacodegeeks.enterprise.bo.impl;
+
+package com.javacodegeeks.enterprise.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.javacodegeeks.enterprise.bo.MyBObject;
+
 import com.javacodegeeks.enterprise.model.Questions;
 import com.javacodegeeks.enterprise.model.QuestionsList;
+import com.javacodegeeks.enterprise.service.ICoreSurveyService;
 
-public class MyBObjectImpl implements MyBObject {
-
-	public String printMessage() {
-		return "Hello from Java Code Geeks JAXWS with Spring Tutorial";
-	}
+public class CoreSurveyServiceImpl implements ICoreSurveyService{
 
 	public QuestionsList listQuestions() {
 		QuestionsList list=new QuestionsList();
@@ -21,4 +19,5 @@ public class MyBObjectImpl implements MyBObject {
 		list.setList(questions);
 		return list;
 	}
+
 }

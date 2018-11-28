@@ -1,4 +1,4 @@
-package com.yea.survey.model;
+package com.javacodegeeks.enterprise.model;
 
 import java.util.Date;
 

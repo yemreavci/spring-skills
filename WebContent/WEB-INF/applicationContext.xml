@@ -3,12 +3,19 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:ws="http://jax-ws.dev.java.net/spring/core"
        xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-       http://jax-ws.dev.java.net/spring/core 
+       http://jax-ws.dev.java.net/spring/core
        http://jax-ws.java.net/spring/core.xsd
-       http://jax-ws.dev.java.net/spring/servlet 
-       http://jax-ws.java.net/spring/servlet.xsd">
+       http://jax-ws.dev.java.net/spring/servlet
+       http://jax-ws.java.net/spring/servlet.xsd
+       http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.javacodegeeks.enterprise.ws,com.javacodegeeks.enterprise.service" />
 
     <wss:binding url="/jaxws-spring">
         <wss:service>
@@ -19,8 +26,10 @@
     <!-- Web service bean -->
     <bean id="myserviceWs" class="com.javacodegeeks.enterprise.ws.MyWebService">
     	<property name="myBObject" ref="MyBObject" />
+    	<property name="coreSurveyService" ref ="CoreSurveyService"></property>
     </bean>
 
     <bean id="MyBObject" class="com.javacodegeeks.enterprise.bo.impl.MyBObjectImpl" />
+    <bean id="CoreSurveyService" class="com.javacodegeeks.enterprise.service.impl.CoreSurveyServiceImpl" />
 
 </beans>

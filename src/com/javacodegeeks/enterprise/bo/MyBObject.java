@@ -1,9 +1,6 @@
 package com.javacodegeeks.enterprise.bo;
 
-import java.util.List;
-
-import com.yea.survey.model.Questions;
-import com.yea.survey.model.QuestionsList;
+import com.javacodegeeks.enterprise.model.QuestionsList;
 
 public interface MyBObject {
 

@@ -2,7 +2,7 @@ package com.javacodegeeks.enterprise.service;
 
 import com.javacodegeeks.enterprise.model.QuestionsList;
 
-public interface ICoreSurveyService {
+public interface IExternalSurvey {
 	public QuestionsList listQuestions(Long compId) ;
 
 }

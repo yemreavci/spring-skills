@@ -39,7 +39,7 @@ public class MyWebService{
 	}
 
 	@WebMethod(operationName="listQuestions")
-	public QuestionsList listQuestions() {
-		return coreSurveyService.listQuestions();
+	public QuestionsList listQuestions(Long compId) {
+		return coreSurveyService.listQuestions(compId);
 	}
 }

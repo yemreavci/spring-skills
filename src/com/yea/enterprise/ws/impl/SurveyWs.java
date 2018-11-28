@@ -1,16 +1,14 @@
-package com.javacodegeeks.enterprise.ws.impl;
+package com.yea.enterprise.ws.impl;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
-
 import org.springframework.stereotype.Service;
-
-import com.javacodegeeks.enterprise.model.QuestionsList;
-import com.javacodegeeks.enterprise.service.impl.CoreSurveyServiceImpl;
-import com.javacodegeeks.enterprise.ws.ISurveyWs;
+import com.yea.enterprise.model.QuestionsList;
+import com.yea.enterprise.service.impl.CoreSurveyServiceImpl;
+import com.yea.enterprise.ws.ISurveyWs;
 
 @WebService(serviceName="SurveyWs")
 @SOAPBinding(style = Style.RPC, use = Use.LITERAL)

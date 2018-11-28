@@ -18,22 +18,22 @@
 	</wss:binding>
 
 	<!-- Web service bean -->
-	<bean id="surveyWs" class="com.javacodegeeks.enterprise.ws.impl.SurveyWs">
+	<bean id="surveyWs" class="com.yea.enterprise.ws.impl.SurveyWs">
 		<property name="coreSurveyService" ref="CoreSurveyService"></property>
 	</bean>
 
 	<bean id="CoreSurveyService"
-		class="com.javacodegeeks.enterprise.service.impl.CoreSurveyServiceImpl">
+		class="com.yea.enterprise.service.impl.CoreSurveyServiceImpl">
 		<property name="externalSurvey" ref="ExternalSurvey"></property>
 	</bean>
 	<bean id="ExternalSurvey"
-		class="com.javacodegeeks.enterprise.service.impl.ExternalSurveyImpl">
+		class="com.yea.enterprise.service.impl.ExternalSurveyImpl">
 		<property name="externalSurveyComp1" ref="ExternalSurveyComp1"></property>
 		<property name="externalSurveyComp2" ref="ExternalSurveyComp2"></property>
 	</bean>
 	<bean id="ExternalSurveyComp2"
-		class="com.javacodegeeks.enterprise.service.impl.ExternalSurveyComp2" />
+		class="com.yea.enterprise.service.impl.ExternalSurveyComp2" />
 	<bean id="ExternalSurveyComp1"
-		class="com.javacodegeeks.enterprise.service.impl.ExternalSurveyComp1" />
+		class="com.yea.enterprise.service.impl.ExternalSurveyComp1" />
 
 </beans>

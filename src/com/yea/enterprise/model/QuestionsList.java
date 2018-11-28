@@ -1,6 +1,8 @@
-package com.javacodegeeks.enterprise.model;
+package com.yea.enterprise.model;
 
 import java.util.List;
+
+import com.yea.enterprise.model.Questions;
 
 public class QuestionsList {
 	List<Questions> list ;

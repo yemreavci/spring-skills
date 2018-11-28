@@ -1,11 +1,11 @@
-package com.javacodegeeks.enterprise.service.impl;
+package com.yea.enterprise.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.javacodegeeks.enterprise.model.Questions;
-import com.javacodegeeks.enterprise.model.QuestionsList;
-import com.javacodegeeks.enterprise.service.IExternalSurvey;
+import com.yea.enterprise.model.Questions;
+import com.yea.enterprise.model.QuestionsList;
+import com.yea.enterprise.service.IExternalSurvey;
 
 public class ExternalSurveyComp1 implements IExternalSurvey{
 

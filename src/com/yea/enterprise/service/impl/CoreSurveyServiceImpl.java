@@ -1,9 +1,9 @@
 
-package com.javacodegeeks.enterprise.service.impl;
+package com.yea.enterprise.service.impl;
 
-import com.javacodegeeks.enterprise.model.QuestionsList;
-import com.javacodegeeks.enterprise.service.ICoreSurveyService;
-import com.javacodegeeks.enterprise.service.IExternalSurvey;
+import com.yea.enterprise.model.QuestionsList;
+import com.yea.enterprise.service.ICoreSurveyService;
+import com.yea.enterprise.service.IExternalSurvey;
 
 public class CoreSurveyServiceImpl implements ICoreSurveyService{
 

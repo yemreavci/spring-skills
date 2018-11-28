@@ -1,4 +1,4 @@
-package com.javacodegeeks.enterprise.model;
+package com.yea.enterprise.model;
 
 import java.util.Date;
 

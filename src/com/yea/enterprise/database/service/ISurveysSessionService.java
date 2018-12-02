@@ -1,0 +1,14 @@
+package com.yea.enterprise.database.service;
+
+import com.yea.enterprise.database.model.Surveys;
+
+public interface ISurveysSessionService {
+	  public void persistSurveys(Surveys surveys);
+	  
+	  public Surveys findSurveysById(String id);
+	  
+	  public void updateSurveys(Surveys surveys);
+	  
+	  public void deleteSurveys(Surveys surveys);
+
+}

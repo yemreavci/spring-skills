@@ -2,12 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ws="http://jax-ws.dev.java.net/spring/core"
 	xmlns:wss="http://jax-ws.dev.java.net/spring/servlet" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
        http://jax-ws.dev.java.net/spring/core
        http://jax-ws.java.net/spring/core.xsd
        http://jax-ws.dev.java.net/spring/servlet
        http://jax-ws.java.net/spring/servlet.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
        http://www.springframework.org/schema/context
 	   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
@@ -16,24 +20,56 @@
 			<ws:service bean="#surveyWs" />
 		</wss:service>
 	</wss:binding>
-
+	<context:component-scan base-package="com.yea.enterprise.*" />
+	<tx:annotation-driven/>
+	
 	<!-- Web service bean -->
 	<bean id="surveyWs" class="com.yea.enterprise.ws.impl.SurveyWs">
 		<property name="coreSurveyService" ref="CoreSurveyService"></property>
 	</bean>
 
-	<bean id="CoreSurveyService"
-		class="com.yea.enterprise.service.impl.CoreSurveyServiceImpl">
+	<bean id="CoreSurveyService" class="com.yea.enterprise.service.impl.CoreSurveyServiceImpl">
 		<property name="externalSurvey" ref="ExternalSurvey"></property>
 	</bean>
-	<bean id="ExternalSurvey"
-		class="com.yea.enterprise.service.impl.ExternalSurveyImpl">
+	<bean id="ExternalSurvey" class="com.yea.enterprise.service.impl.ExternalSurveyImpl">
 		<property name="externalSurveyComp1" ref="ExternalSurveyComp1"></property>
 		<property name="externalSurveyComp2" ref="ExternalSurveyComp2"></property>
 	</bean>
-	<bean id="ExternalSurveyComp2"
-		class="com.yea.enterprise.service.impl.ExternalSurveyComp2" />
-	<bean id="ExternalSurveyComp1"
-		class="com.yea.enterprise.service.impl.ExternalSurveyComp1" />
+	<bean id="ExternalSurveyComp2" class="com.yea.enterprise.service.impl.ExternalSurveyComp2" />
+	<bean id="ExternalSurveyComp1" class="com.yea.enterprise.service.impl.ExternalSurveyComp1" />
+
+
+ <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+    <property name="url" value="jdbc:mysql://localhost:3306/world" />
+    <property name="username" value="root" />
+    <property name="password" value="root" />
+  </bean>
+
+  <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"></property>
+     <property name="annotatedClasses">
+            <list>
+                <value>com.yea.enterprise.database.model.Employee</value>
+                <value>com.yea.enterprise.database.model.Question</value>
+                <value>com.yea.enterprise.database.model.QuestionOrder</value>
+                <value>com.yea.enterprise.database.model.Respondent</value>
+                <value>com.yea.enterprise.database.model.Response</value>
+                <value>com.yea.enterprise.database.model.SurveyResponse</value>
+                <value>com.yea.enterprise.database.model.Surveys</value>
+            </list>
+        </property>
+    <property name="hibernateProperties">
+      <props>
+        <prop 
+         key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+        <prop key="hibernate.show_sql">true</prop>
+      </props>
+    </property>
+  </bean>
+  
+  <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager" 
+    p:sessionFactory-ref="sessionFactory">
+  </bean>
 
 </beans>

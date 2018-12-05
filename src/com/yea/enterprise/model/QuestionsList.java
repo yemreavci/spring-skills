@@ -2,16 +2,16 @@ package com.yea.enterprise.model;
 
 import java.util.List;
 
-import com.yea.enterprise.model.Questions;
+import com.yea.enterprise.database.model.Question;
 
 public class QuestionsList {
-	List<Questions> list ;
+	List<Question> list ;
 
-	public List<Questions> getList() {
+	public List<Question> getList() {
 		return list;
 	}
 
-	public void setList(List<Questions> list) {
+	public void setList(List<Question> list) {
 		this.list = list;
 	}
 	

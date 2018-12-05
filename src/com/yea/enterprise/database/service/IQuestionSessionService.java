@@ -7,7 +7,7 @@ import com.yea.enterprise.database.model.Question;
 public interface IQuestionSessionService {
 	void persistQuestion(Question employee);
 
-	Question findQuestionById(String id);
+	Question findQuestionById(Long id);
 
 	void updateQuestion(Question employee);
 

@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +31,8 @@ public class QuestionOrder implements Serializable{
 	private static final long serialVersionUID = -8377931202676103391L;
 
 	@Id
-	@Column(name = "ID", nullable = false)
+	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@ManyToOne
@@ -39,10 +43,9 @@ public class QuestionOrder implements Serializable{
 	@JoinColumn(name="QUESTION_ID")
 	private Question questionId;
 
-	@Id
-	@Column(name = "ORDER", nullable = false)
-	private Long order;
-	
+	@Column(name = "ORDER_NO", nullable = false)
+	private Long orderNo;
+
 	public Long getId() {
 		return id;
 	}
@@ -67,12 +70,12 @@ public class QuestionOrder implements Serializable{
 		this.questionId = questionId;
 	}
 
-	public Long getOrder() {
-		return order;
+	public Long getOrderNo() {
+		return orderNo;
 	}
 
-	public void setOrder(Long order) {
-		this.order = order;
-	}	
+	public void setOrderNo(Long orderNo) {
+		this.orderNo = orderNo;
+	}
 	
 }

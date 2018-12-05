@@ -29,14 +29,10 @@ public class QuestionServiceSessionImpl implements IQuestionSessionService {
 	}
 
 	@Transactional
-	public Question findQuestionById(String id) {
+	public Question findQuestionById(Long id) {
 		return questionSessionDAO.findQuestionById(id);
 	}
 
-	public void deleteEmployee(Question question) {
-		questionSessionDAO.deleteQuestion(question);
-
-	}
 
 	@Transactional
 	public void deleteQuestion(Question question) {
@@ -44,6 +40,7 @@ public class QuestionServiceSessionImpl implements IQuestionSessionService {
 
 	}
 
+	@Transactional
 	public List<Question> findQuestionList() {
 		return questionSessionDAO.findQuestionList();
 	}

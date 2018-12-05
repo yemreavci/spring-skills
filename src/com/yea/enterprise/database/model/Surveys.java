@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -11,20 +13,29 @@ import javax.persistence.TemporalType;
 /*
  * 
  * 
-
-CREATE TABLE  `world`.`Question` (
-  `ID` INT(19) unsigned  NOT NULL  AUTO_INCREMENT,
-  `TEXT` varchar(200) NOT NULL,
+ CREATE TABLE  `world`.`Surveys` (
+  `ID` int(19) unsigned NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(200) NOT NULL,
+  `DESCRIPTION` varchar(200) NOT NULL,
   `UPDATED` DATE NOT NULL,
   PRIMARY KEY (`ID`) USING BTREE
   ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  ALTER TABLE WORLD.Surveys DROP id;
+  
+  ALTER TABLE WORLD.Surveys DROP column ID;
+
+
+ALTER TABLE WORLD.Surveys
+ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
+ADD PRIMARY KEY (id);
   
  */
 @Entity
 @Table(name = "Surveys")
 public class Surveys {
 	@Id
-	@Column(name = "ID", nullable = false)
+	@Column(name = "ID")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
 	@Column(name = "NAME", nullable = false)

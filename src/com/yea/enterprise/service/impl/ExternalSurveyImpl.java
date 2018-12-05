@@ -7,7 +7,6 @@ import com.yea.enterprise.database.model.QuestionOrder;
 import com.yea.enterprise.database.model.Respondent;
 import com.yea.enterprise.database.model.Response;
 import com.yea.enterprise.database.model.Surveys;
-import com.yea.enterprise.model.Questions;
 import com.yea.enterprise.model.QuestionsList;
 import com.yea.enterprise.service.IExternalSurvey;
 
@@ -47,7 +46,7 @@ public class ExternalSurveyImpl implements IExternalSurvey {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	public boolean addQuestions(Questions questions) {
+	public boolean addQuestions(Question questions) {
 		// TODO Auto-generated method stub
 		return false;
 	}

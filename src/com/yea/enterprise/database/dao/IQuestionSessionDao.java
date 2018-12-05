@@ -8,7 +8,7 @@ public interface IQuestionSessionDao {
 	
 	  public void persistQuestion(Question question);
 	  
-	  public Question findQuestionById(String id);
+	  public Question findQuestionById(Long id);
 	  
 	  public List<Question> findQuestionList();
 	  

@@ -6,6 +6,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yea.enterprise.database.model.Question;
+import com.yea.enterprise.database.model.QuestionOrder;
 import com.yea.enterprise.database.model.Surveys;
 import com.yea.enterprise.database.service.IQuestionOrderSessionService;
 import com.yea.enterprise.database.service.IQuestionSessionService;
@@ -38,8 +39,8 @@ public class CoreSurveyServiceImpl implements ICoreSurveyService{
 	@Autowired
 	IQuestionSessionService questionSessionService;
 
-//	@Autowired
-//	IQuestionOrderSessionService questionOrderSessionService;		
+	@Autowired
+	IQuestionOrderSessionService questionOrderSessionService;		
 	
 	@Autowired
 	IRespondentSessionService respondentSessionService;
@@ -62,13 +63,16 @@ public class CoreSurveyServiceImpl implements ICoreSurveyService{
 	}
 
 	public ListSurveyQuestionsResponse listSurveyQuestions(ListSurveyQuestionsRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		ListSurveyQuestionsResponse response= new ListSurveyQuestionsResponse();
+		Surveys surveys=surveysSessionService.findSurveysById(request.getSurveyId());
+		response.setListQuestions(questionOrderSessionService.findSurveyQuestionList(surveys));
+		return response;
 	}
 
 	public ListSurveyResponse listSurveys(ListSurveyRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		ListSurveyResponse response= new ListSurveyResponse();
+		response.setResultList(surveysSessionService.findSurveysList());
+		return response;
 	}
 
 	public AddQuestionResponse addQuestions(AddQuestionRequest request) {
@@ -91,8 +95,13 @@ public class CoreSurveyServiceImpl implements ICoreSurveyService{
 	}
 
 	public AddQuestionToSurveyResponse addQuestionToSurveys(AddQuestionToSurveyRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		AddQuestionToSurveyResponse response= new AddQuestionToSurveyResponse();
+		QuestionOrder qOrder = new QuestionOrder();
+		qOrder.setOrderNo(request.getOrder());
+		qOrder.setSurveysId(surveysSessionService.findSurveysById(request.getSurveyId()));
+		qOrder.setQuestionId(questionSessionService.findQuestionById(request.getQuestionId()));
+		questionOrderSessionService.persistQuestionOrder(qOrder);
+		return response;
 	}
 
 	public AddRespondentResponse addRespondent(AddRespondentRequest request) {

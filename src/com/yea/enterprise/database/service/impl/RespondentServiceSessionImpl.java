@@ -25,7 +25,7 @@ public class RespondentServiceSessionImpl implements IRespondentSessionService{
 		
 	}
 	@Transactional
-	public Respondent findRespondentById(String id) {
+	public Respondent findRespondentById(Long id) {
 		return respondentSessionDAO.findRespondentById(id);
 	}
 

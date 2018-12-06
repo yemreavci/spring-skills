@@ -12,15 +12,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 /*
  * 
- CREATE TABLE  `world`.`Question` (
+ CREATE TABLE  `world`.`Respondent` (
   `ID` int(19) unsigned NOT NULL AUTO_INCREMENT,
-  `TEXT` varchar(200) NOT NULL,
-  `UPDATED` DATE NOT NULL,
+  `EMAIL` varchar(100) NOT NULL,
+  `HASHED_PASSWORD` varchar(100) NOT NULL,
+  `NAME` varchar(100) NOT NULL,
+    `CREATED` DATE NOT NULL,
   PRIMARY KEY (`ID`) USING BTREE
   ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-  ALTER TABLE WORLD.question DROP id;
-
-ALTER TABLE WORLD.question
+  
+ alter table `world`.`Respondent` drop id;
+ 
+ALTER TABLE `world`.`Respondent`
 ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
 ADD PRIMARY KEY (id);
 

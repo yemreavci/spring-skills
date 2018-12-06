@@ -18,7 +18,7 @@ public class RespondentSessionDAOImpl implements IRespondentSessionDAO{
 		sessionFactory.getCurrentSession().persist(respondent);
 	}
 
-	public Respondent findRespondentById(String id) {
+	public Respondent findRespondentById(Long id) {
 		return (Respondent) sessionFactory.getCurrentSession().get(Respondent.class, id);
 	}
 

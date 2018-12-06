@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yea.enterprise.database.model.Question;
 import com.yea.enterprise.database.model.QuestionOrder;
+import com.yea.enterprise.database.model.Respondent;
+import com.yea.enterprise.database.model.Response;
 import com.yea.enterprise.database.model.Surveys;
 import com.yea.enterprise.database.service.IQuestionOrderSessionService;
 import com.yea.enterprise.database.service.IQuestionSessionService;
 import com.yea.enterprise.database.service.IRespondentSessionService;
+import com.yea.enterprise.database.service.IResponseSessionService;
 import com.yea.enterprise.database.service.ISurveyResponseSessionService;
 import com.yea.enterprise.database.service.ISurveysSessionService;
 import com.yea.enterprise.service.ICoreSurveyService;
@@ -50,6 +53,9 @@ public class CoreSurveyServiceImpl implements ICoreSurveyService{
 	
 	@Autowired
 	ISurveysSessionService surveysSessionService;	
+	
+	@Autowired
+	IResponseSessionService responseSessionService;
 	
 	public void setExternalSurvey(ExternalSurveyImpl externalSurvey) {
 		this.externalSurvey = externalSurvey;
@@ -105,13 +111,25 @@ public class CoreSurveyServiceImpl implements ICoreSurveyService{
 	}
 
 	public AddRespondentResponse addRespondent(AddRespondentRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		AddRespondentResponse response=new AddRespondentResponse();
+		Respondent respondent=new Respondent();
+		respondent.setEmail(request.getEmail());
+		respondent.setName(request.getName());
+		respondent.setHashedPassword(request.getHashedPassword());
+		respondent.setCreated(new Date());
+		respondentSessionService.persistRespondent(respondent);
+		return response;
 	}
 
 	public AddResponseResponse  addResponse(AddResponseRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		AddResponseResponse response= new AddResponseResponse();
+		Response resp= new Response();
+		resp.setAnswer(request.getAnswer());
+		resp.setQuestionId(questionSessionService.findQuestionById(request.getQuestionId()));
+		resp.setRespondentId(respondentSessionService.findRespondentById(request.getRespondentId()));
+		resp.setSurveysId(surveysSessionService.findSurveysById(request.getSurveyId()));
+		responseSessionService.persistResponse(resp);
+		return response;
 	}
 	
 

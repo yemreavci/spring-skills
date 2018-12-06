@@ -100,10 +100,11 @@
 			<version>1.0</version>
 		</dependency>
 
+		<!-- JPA Vendor Hibernate as JPA implementation. hibernate-entitymanager is dependent on hibernate-core this why we don’t have to put hibernate-core in pom.xml explicitly-->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>4.1.9.Final</version>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<dependency>
@@ -115,6 +116,7 @@
 
 	<properties>
 		<spring.version>3.2.3.RELEASE</spring.version>
+		<hibernate.version>4.1.9.Final</hibernate.version>
 	</properties>
 
 </project>

@@ -1,5 +1,7 @@
 package com.yea.enterprise.database.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +9,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "EMPLOYEE")
-public class Employee {
+public class Employee implements Serializable{
+
+	private static final long serialVersionUID = 2512062847321111953L;
 
 	@Id
 	@Column(name = "ID", nullable = false)

@@ -1,5 +1,6 @@
 package com.yea.enterprise.database.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -30,7 +31,10 @@ ADD PRIMARY KEY (id);
  */
 @Entity
 @Table(name = "Question")
-public class Question {
+public class Question implements Serializable{
+
+	private static final long serialVersionUID = -2479623375226190506L;
+
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)

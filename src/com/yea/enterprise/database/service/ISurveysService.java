@@ -1,10 +1,10 @@
-package com.yea.enterprise.database.dao;
+package com.yea.enterprise.database.service;
 
 import java.util.List;
 
 import com.yea.enterprise.database.model.Surveys;
 
-public interface ISurveysSessionDAO {
+public interface ISurveysService {
 	  public void persistSurveys(Surveys surveys);
 	  
 	  public Surveys findSurveysById(Long id);
@@ -14,4 +14,5 @@ public interface ISurveysSessionDAO {
 	  public void deleteSurveys(Surveys surveys);
 
 	public List<Surveys> findSurveysList();
+
 }

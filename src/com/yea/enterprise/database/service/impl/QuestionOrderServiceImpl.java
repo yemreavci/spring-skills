@@ -7,41 +7,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yea.enterprise.database.dao.IQuestionOrderSessionDAO;
+import com.yea.enterprise.database.dao.IQuestionOrderEMDAO;
 import com.yea.enterprise.database.model.Question;
 import com.yea.enterprise.database.model.QuestionOrder;
 import com.yea.enterprise.database.model.Surveys;
-import com.yea.enterprise.database.service.IQuestionOrderSessionService;
+import com.yea.enterprise.database.service.IQuestionOrderService;
 
 @Service("questionOrderServiceImpl")
-public class QuestionOrderServiceSessionImpl implements IQuestionOrderSessionService{
+public class QuestionOrderServiceImpl implements IQuestionOrderService{
 	@Autowired
-	IQuestionOrderSessionDAO questionOrderSessionDAO;
+	IQuestionOrderEMDAO questionOrderEMDAO;
 	
 	@Transactional
 	public void persistQuestionOrder(QuestionOrder questionOrder) {
-		questionOrderSessionDAO.persistQuestionOrder(questionOrder);
+		questionOrderEMDAO.save(questionOrder);
 	}
 
 	@Transactional
 	public void updateQuestionOrder(QuestionOrder questionOrder) {
-		questionOrderSessionDAO.updateQuestionOrder(questionOrder);
+		questionOrderEMDAO.save(questionOrder);
 		
 	}
 	@Transactional
-	public QuestionOrder findQuestionOrderById(String id) {
-		return questionOrderSessionDAO.findQuestionOrderById(id);
+	public QuestionOrder findQuestionOrderById(Long id) {
+		return questionOrderEMDAO.findOne(id);
 	}
 
 	@Transactional
 	public void deleteQuestionOrder(QuestionOrder questionOrder) {
-		questionOrderSessionDAO.deleteQuestionOrder(questionOrder);
 		
 	}
 
 	@Transactional
 	public List<Question> findSurveyQuestionList(Surveys surveys) {
-		List<QuestionOrder> questionOrderList=questionOrderSessionDAO.findSurveyQuestionList(surveys);
+		List<QuestionOrder> questionOrderList=questionOrderEMDAO.findSurveyQuestionList(surveys);
 		List<Question> qList= new ArrayList<Question>();
 		for (QuestionOrder item : questionOrderList) {
 			qList.add(item.getQuestionId());

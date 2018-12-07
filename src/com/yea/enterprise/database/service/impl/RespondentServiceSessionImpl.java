@@ -4,34 +4,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yea.enterprise.database.dao.IRespondentSessionDAO;
+import com.yea.enterprise.database.dao.IRespondentEMDAO;
 import com.yea.enterprise.database.model.Respondent;
 import com.yea.enterprise.database.service.IRespondentSessionService;
 
 @Service("respondentServiceImpl")
 public class RespondentServiceSessionImpl implements IRespondentSessionService{
 	@Autowired
-	IRespondentSessionDAO respondentSessionDAO;
+	IRespondentEMDAO respondentEMDAO;
 	
 	@Transactional
-	public void persistRespondent(Respondent employee) {
-		respondentSessionDAO.persistRespondent(employee);
+	public void persistRespondent(Respondent respondent) {
+		respondentEMDAO.save(respondent);
 		
 	}
 
 	@Transactional
-	public void updateRespondent(Respondent employee) {
-		respondentSessionDAO.updateRespondent(employee);
+	public void updateRespondent(Respondent respondent) {
+		respondentEMDAO.save(respondent);
 		
 	}
 	@Transactional
 	public Respondent findRespondentById(Long id) {
-		return respondentSessionDAO.findRespondentById(id);
+		return respondentEMDAO.findOne(id);
 	}
 
 	@Transactional
-	public void deleteRespondent(Respondent employee) {
-		respondentSessionDAO.deleteRespondent(employee);
+	public void deleteRespondent(Respondent respondent) {
 		
 	}
 

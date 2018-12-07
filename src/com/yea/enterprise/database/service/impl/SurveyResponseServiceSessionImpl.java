@@ -4,34 +4,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yea.enterprise.database.dao.ISurveyResponseSessionDAO;
+import com.yea.enterprise.database.dao.ISurveyResponseEMDAO;
 import com.yea.enterprise.database.model.SurveyResponse;
-import com.yea.enterprise.database.service.ISurveyResponseSessionService;
+import com.yea.enterprise.database.service.ISurveyResponseService;
 
 @Service("surveyResponseServiceImpl")
-public class SurveyResponseServiceSessionImpl implements ISurveyResponseSessionService{
+public class SurveyResponseServiceSessionImpl implements ISurveyResponseService{
 	@Autowired
-	ISurveyResponseSessionDAO employeeSessionDAO;
+	ISurveyResponseEMDAO surveyResponseEMDAO;
 	
 	@Transactional
 	public void persistSurveyResponse(SurveyResponse surveyResponse) {
-		employeeSessionDAO.persistSurveyResponse(surveyResponse);
+		surveyResponseEMDAO.save(surveyResponse);
 		
 	}
 
 	@Transactional
 	public void updateSurveyResponse(SurveyResponse surveyResponse) {
-		employeeSessionDAO.updateSurveyResponse(surveyResponse);
+		surveyResponseEMDAO.save(surveyResponse);
 		
 	}
 	@Transactional
-	public SurveyResponse findSurveyResponseById(String id) {
-		return employeeSessionDAO.findSurveyResponseById(id);
+	public SurveyResponse findSurveyResponseById(Long id) {
+		return surveyResponseEMDAO.findOne(id);
 	}
 
 	@Transactional
 	public void deleteSurveyResponse(SurveyResponse surveyResponse) {
-		employeeSessionDAO.deleteSurveyResponse(surveyResponse);
 		
 	}
 

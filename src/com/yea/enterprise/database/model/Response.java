@@ -1,5 +1,7 @@
 package com.yea.enterprise.database.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +29,7 @@ ADD PRIMARY KEY (id);
  */
 @Entity
 @Table(name = "Response")
-public class Response {
+public class Response implements Serializable{
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)

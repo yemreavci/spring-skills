@@ -1,5 +1,6 @@
 package com.yea.enterprise.database.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -23,7 +24,10 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "Survey_Response")
-public class SurveyResponse {
+public class SurveyResponse implements Serializable {
+
+	private static final long serialVersionUID = 3791573949912034893L;
+
 	@Id
 	@Column(name = "ID", nullable = false)
 	private Long id;

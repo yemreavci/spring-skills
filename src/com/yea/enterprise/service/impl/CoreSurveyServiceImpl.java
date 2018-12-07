@@ -10,12 +10,12 @@ import com.yea.enterprise.database.model.QuestionOrder;
 import com.yea.enterprise.database.model.Respondent;
 import com.yea.enterprise.database.model.Response;
 import com.yea.enterprise.database.model.Surveys;
-import com.yea.enterprise.database.service.IQuestionOrderSessionService;
+import com.yea.enterprise.database.service.IQuestionOrderService;
 import com.yea.enterprise.database.service.IQuestionSessionService;
 import com.yea.enterprise.database.service.IRespondentSessionService;
-import com.yea.enterprise.database.service.IResponseSessionService;
-import com.yea.enterprise.database.service.ISurveyResponseSessionService;
-import com.yea.enterprise.database.service.ISurveysSessionService;
+import com.yea.enterprise.database.service.IResponseService;
+import com.yea.enterprise.database.service.ISurveyResponseService;
+import com.yea.enterprise.database.service.ISurveysService;
 import com.yea.enterprise.service.ICoreSurveyService;
 import com.yea.enterprise.service.IExternalSurvey;
 import com.yea.enterprise.ws.model.AddQuestionRequest;
@@ -43,19 +43,19 @@ public class CoreSurveyServiceImpl implements ICoreSurveyService{
 	IQuestionSessionService questionSessionService;
 
 	@Autowired
-	IQuestionOrderSessionService questionOrderSessionService;		
+	IQuestionOrderService questionOrderSessionService;		
 	
 	@Autowired
 	IRespondentSessionService respondentSessionService;
 
 	@Autowired
-	ISurveyResponseSessionService surveyResponseSessionService;	
+	ISurveyResponseService surveyResponseSessionService;	
 	
 	@Autowired
-	ISurveysSessionService surveysSessionService;	
+	ISurveysService surveysSessionService;	
 	
 	@Autowired
-	IResponseSessionService responseSessionService;
+	IResponseService responseSessionService;
 	
 	public void setExternalSurvey(ExternalSurveyImpl externalSurvey) {
 		this.externalSurvey = externalSurvey;

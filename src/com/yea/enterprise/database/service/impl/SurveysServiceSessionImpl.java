@@ -6,41 +6,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yea.enterprise.database.dao.ISurveysSessionDAO;
-import com.yea.enterprise.database.model.Question;
+import com.yea.enterprise.database.dao.ISurveysEMDAO;
 import com.yea.enterprise.database.model.Surveys;
-import com.yea.enterprise.database.service.ISurveysSessionService;
+import com.yea.enterprise.database.service.ISurveysService;
 
 @Service("surveysServiceImpl")
-public class SurveysServiceSessionImpl implements ISurveysSessionService{
+public class SurveysServiceSessionImpl implements ISurveysService{
 	@Autowired
-	ISurveysSessionDAO surveysSessionDAO;
+	ISurveysEMDAO surveyResponseEMDAO;
 	
 	@Transactional
 	public void persistSurveys(Surveys surveys) {
-		surveysSessionDAO.persistSurveys(surveys);
+		surveyResponseEMDAO.save(surveys);
 		
 	}
 
 	@Transactional
 	public void updateSurveys(Surveys surveys) {
-		surveysSessionDAO.updateSurveys(surveys);
+		surveyResponseEMDAO.save(surveys);
 		
 	}
 	@Transactional
 	public Surveys findSurveysById(Long id) {
-		return surveysSessionDAO.findSurveysById(id);
+		return surveyResponseEMDAO.findOne(id);
 	}
 
 	@Transactional
 	public void deleteSurveys(Surveys surveys) {
-		surveysSessionDAO.deleteSurveys(surveys);
 		
 	}
 
 	@Transactional
 	public List<Surveys> findSurveysList() {
-		return surveysSessionDAO.findSurveysList();
+		return surveyResponseEMDAO.findAll();
 	}
 
 }

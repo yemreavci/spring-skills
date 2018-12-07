@@ -6,10 +6,10 @@ import com.yea.enterprise.database.model.Question;
 import com.yea.enterprise.database.model.QuestionOrder;
 import com.yea.enterprise.database.model.Surveys;
 
-public interface IQuestionOrderSessionService {
+public interface IQuestionOrderService {
 	  public void persistQuestionOrder(QuestionOrder questionOrder);
 	  
-	  public QuestionOrder findQuestionOrderById(String id);
+	  public QuestionOrder findQuestionOrderById(Long id);
 	  
 	  public void updateQuestionOrder(QuestionOrder questionOrder);
 	  

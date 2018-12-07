@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /*
@@ -25,6 +27,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Question_Order")
+@NamedQueries({
+	@NamedQuery(name = "NQ_GET_SURVEY_QUESTIONLIST", query = "SELECT f FROM QuestionOrder f WHERE surveysId= :surveysId") }
+)
 public class QuestionOrder implements Serializable{
 
 

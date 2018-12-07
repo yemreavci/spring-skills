@@ -4,34 +4,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yea.enterprise.database.dao.IResponseSessionDAO;
+import com.yea.enterprise.database.dao.IResponseEMDAO;
 import com.yea.enterprise.database.model.Response;
-import com.yea.enterprise.database.service.IResponseSessionService;
+import com.yea.enterprise.database.service.IResponseService;
 
 @Service("responseServiceImpl")
-public class ResponseServiceSessionImpl implements IResponseSessionService{
+public class ResponseServiceSessionImpl implements IResponseService{
 	@Autowired
-	IResponseSessionDAO responseSessionDAO;
+	IResponseEMDAO responseEmDAO;
 	
 	@Transactional
 	public void persistResponse(Response response) {
-		responseSessionDAO.persistResponse(response);
+		responseEmDAO.save(response);
 		
 	}
 
 	@Transactional
 	public void updateResponse(Response response) {
-		responseSessionDAO.updateResponse(response);
+		responseEmDAO.save(response);
 		
 	}
 	@Transactional
-	public Response findResponseById(String id) {
-		return responseSessionDAO.findResponseById(id);
+	public Response findResponseById(Long id) {
+		return responseEmDAO.findOne(id);
 	}
 
 	@Transactional
 	public void deleteResponse(Response response) {
-		responseSessionDAO.deleteResponse(response);
 		
 	}
 

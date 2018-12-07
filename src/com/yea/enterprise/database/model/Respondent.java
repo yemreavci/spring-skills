@@ -1,5 +1,6 @@
 package com.yea.enterprise.database.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -22,7 +23,10 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "Respondent")
-public class Respondent {
+public class Respondent implements Serializable{
+
+	private static final long serialVersionUID = -3881365607786266296L;
+
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)

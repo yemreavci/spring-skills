@@ -8,12 +8,9 @@ import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import com.yea.enterprise.database.model.Question;
-import com.yea.enterprise.database.service.IQuestionSessionService;
-import com.yea.enterprise.model.QuestionsList;
 import com.yea.enterprise.service.impl.CoreSurveyServiceImpl;
 import com.yea.enterprise.ws.ISurveyWs;
 import com.yea.enterprise.ws.model.AddQuestionRequest;
@@ -38,6 +35,7 @@ import com.yea.enterprise.ws.model.ResponseType;
 @SOAPBinding(style = Style.RPC, use = Use.LITERAL)
 @Service
 public class SurveyWs implements ISurveyWs{
+	private static final Logger logger = Logger.getLogger(SurveyWs.class);
 
 	CoreSurveyServiceImpl coreSurveyService;
 
@@ -53,6 +51,7 @@ public class SurveyWs implements ISurveyWs{
 			response=coreSurveyService.listQuestions(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
+			logger.error("listQuestions-listQuestions" + e.getMessage());
 			setResonseError(response);
 		}
 		return response;
@@ -65,6 +64,7 @@ public class SurveyWs implements ISurveyWs{
 			response=coreSurveyService.listSurveyQuestions(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
+			logger.error("listQuestions-listSurveyQuestions" + e.getMessage());
 			setResonseError(response);
 		}
 		return response;
@@ -77,6 +77,7 @@ public class SurveyWs implements ISurveyWs{
 			response=coreSurveyService.listSurveys(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
+			logger.error("listQuestions-listSurveys" + e.getMessage());
 			setResonseError(response);
 		}
 		return response;
@@ -89,8 +90,8 @@ public class SurveyWs implements ISurveyWs{
 			response=coreSurveyService.addQuestions(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
+			logger.error("listQuestions-addQuestions" + e.getMessage());
 			setResonseError(response);
-			System.out.println(e.getStackTrace());
 		}
 		return response;
 	}
@@ -102,6 +103,7 @@ public class SurveyWs implements ISurveyWs{
 			response=coreSurveyService.addSurvey(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
+			logger.error("listQuestions-addSurvey" + e.getMessage());
 			setResonseError(response);
 		}
 		return response;
@@ -114,6 +116,7 @@ public class SurveyWs implements ISurveyWs{
 			response=coreSurveyService.addQuestionToSurveys(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
+			logger.error("listQuestions-addQuestionToServey" + e.getMessage());
 			setResonseError(response);
 		}
 		return response;
@@ -126,6 +129,7 @@ public class SurveyWs implements ISurveyWs{
 			response=coreSurveyService.addRespondent(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
+			logger.error("listQuestions-addRespondent" + e.getMessage());
 			setResonseError(response);
 		}
 		return response;
@@ -138,6 +142,7 @@ public class SurveyWs implements ISurveyWs{
 			response=coreSurveyService.addResponse(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
+			logger.error("listQuestions-addResponse" + e.getMessage());
 			setResonseError(response);
 		}
 		return response;
@@ -146,15 +151,15 @@ public class SurveyWs implements ISurveyWs{
 	private ResponseType setResonseSuccess(ResponseType response) {
 		response.getResponseHeader().setResultCode(1);
 		response.getResponseHeader().setResultDescription("SUCCESS");
-		return response;	
+		return response;
 	}
 	private ResponseType setResonseError(ResponseType response) {
 		response.getResponseHeader().setResultCode(0);
 		response.getResponseHeader().setResultDescription("ERROR");
-		return response;	
+		return response;
 	}
 
-	
+
 	/**
 	 * Read with FileSystemXmlApplicationContext
         ConfigurableApplicationContext context = new FileSystemXmlApplicationContext("C:\\Users\\yea\\Desktop\\JAXWS-Spring\\WebContent\\WEB-INF\\applicationContext.xml");
@@ -164,7 +169,7 @@ public class SurveyWs implements ISurveyWs{
 		em.setAge(35);
 		IEmployeeSessionService emService = (IEmployeeSessionService) context.getBean("employeeService");
 		emService.persistEmployee(em);
-		System.out.println("Updated age :" + emService.findEmployeeById("123").getAge());		
+		System.out.println("Updated age :" + emService.findEmployeeById("123").getAge());
 		em.setAge(32);
 		emService.updateEmployee(em);
 		System.out.println("Updated age :" + emService.findEmployeeById("123").getAge());

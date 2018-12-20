@@ -1,6 +1,6 @@
 package com.yea.enterprise.ws.model;
 
-public class AddQuestionToSurveyRequest extends ResponseType{
+public class AddQuestionToSurveyRequest extends RequestType{
 
 	private static final long serialVersionUID = -397606484835445398L;
 	

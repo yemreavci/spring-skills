@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.yea.enterprise.service.impl.CoreSurveyServiceImpl;
+import com.yea.enterprise.util.Util;
 import com.yea.enterprise.ws.ISurveyWs;
 import com.yea.enterprise.ws.model.AddQuestionRequest;
 import com.yea.enterprise.ws.model.AddQuestionResponse;
@@ -29,6 +30,7 @@ import com.yea.enterprise.ws.model.ListSurveyQuestionsRequest;
 import com.yea.enterprise.ws.model.ListSurveyQuestionsResponse;
 import com.yea.enterprise.ws.model.ListSurveyRequest;
 import com.yea.enterprise.ws.model.ListSurveyResponse;
+import com.yea.enterprise.ws.model.RequestType;
 import com.yea.enterprise.ws.model.ResponseType;
 //http://localhost:8080/JAXWS-Spring/jaxws-spring
 @WebService(serviceName="SurveyWs")
@@ -48,7 +50,11 @@ public class SurveyWs implements ISurveyWs{
 	public ListQuestionResponse listQuestions(ListQuestionRequest request) {
 		ListQuestionResponse response= new ListQuestionResponse();
 		try {
+			checkHeader(request);
 			response=coreSurveyService.listQuestions(request);
+			if(!Util.isListEmpty(response.getListQuestions())) {
+				logger.info("listQuestions-listQuestions size " + response.getListQuestions().size());				
+			}
 			setResonseSuccess(response);
 		}catch(Exception e) {
 			logger.error("listQuestions-listQuestions" + e.getMessage());
@@ -61,6 +67,7 @@ public class SurveyWs implements ISurveyWs{
 	public ListSurveyQuestionsResponse listSurveyQuestions(ListSurveyQuestionsRequest request) {
 		ListSurveyQuestionsResponse response= new ListSurveyQuestionsResponse();
 		try {
+			checkHeader(request);
 			response=coreSurveyService.listSurveyQuestions(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
@@ -74,6 +81,7 @@ public class SurveyWs implements ISurveyWs{
 	public ListSurveyResponse listSurveys(ListSurveyRequest request) {
 		ListSurveyResponse response= new ListSurveyResponse();
 		try {
+			checkHeader(request);
 			response=coreSurveyService.listSurveys(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
@@ -87,6 +95,7 @@ public class SurveyWs implements ISurveyWs{
 	public AddQuestionResponse addQuestions(AddQuestionRequest request) {
 		AddQuestionResponse response= new AddQuestionResponse();
 		try {
+			checkHeader(request);
 			response=coreSurveyService.addQuestions(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
@@ -100,6 +109,7 @@ public class SurveyWs implements ISurveyWs{
 	public AddSurveyResponse addSurvey(AddSurveyRequest request) {
 		AddSurveyResponse response= new AddSurveyResponse();
 		try {
+			checkHeader(request);
 			response=coreSurveyService.addSurvey(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
@@ -113,6 +123,7 @@ public class SurveyWs implements ISurveyWs{
 	public AddQuestionToSurveyResponse addQuestionToServey(AddQuestionToSurveyRequest request) {
 		AddQuestionToSurveyResponse response= new AddQuestionToSurveyResponse();
 		try {
+			checkHeader(request);
 			response=coreSurveyService.addQuestionToSurveys(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
@@ -126,6 +137,7 @@ public class SurveyWs implements ISurveyWs{
 	public AddRespondentResponse addRespondent(AddRespondentRequest request) {
 		AddRespondentResponse response= new AddRespondentResponse();
 		try {
+			checkHeader(request);
 			response=coreSurveyService.addRespondent(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
@@ -139,6 +151,7 @@ public class SurveyWs implements ISurveyWs{
 	public AddResponseResponse  addResponse(AddResponseRequest request) {
 		AddResponseResponse response= new AddResponseResponse();
 		try {
+			checkHeader(request);
 			response=coreSurveyService.addResponse(request);
 			setResonseSuccess(response);
 		}catch(Exception e) {
@@ -157,6 +170,14 @@ public class SurveyWs implements ISurveyWs{
 		response.getResponseHeader().setResultCode(0);
 		response.getResponseHeader().setResultDescription("ERROR");
 		return response;
+	}
+	
+	private <T extends RequestType> boolean checkHeader(T t) throws Exception {
+		if(t.getRequestHeader().getPassword() == null || t.getRequestHeader().getPassword().length() ==0) {
+			throw new Exception("Password not given");
+		}
+		return false;
+		
 	}
 
 
